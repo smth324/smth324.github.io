@@ -43,6 +43,7 @@ const handleClick = (event) => {
             circleWinCounter++
             document.querySelector('.circle-win-counter').innerHTML = `Circle Wins: ${circleWinCounter}`
             document.querySelector('.title').innerHTML = `O Wins!`
+            document.querySelector('.turn').innerHTML = 'Game Over!'
             squares.forEach((x) => {
                 x.removeEventListener('click', handleClick)
             })
@@ -55,6 +56,7 @@ const handleClick = (event) => {
             crossWinCounter++
             document.querySelector('.cross-win-counter').innerHTML = `Cross Wins: ${crossWinCounter}`
             document.querySelector('.title').innerHTML = `X Wins!`
+            document.querySelector('.turn').innerHTML = 'Game Over!'
             squares.forEach((x) => {
                 x.removeEventListener('click', handleClick)
             })
@@ -72,6 +74,7 @@ const handleClick = (event) => {
         document.querySelector('.title').innerHTML = `Draw!`
         document.querySelector('.back').style.display = 'inline-block'
         document.querySelector('.forward').style.display = 'inline-block'
+        document.querySelector('.turn').innerHTML = 'Game Over!'
     }
 }
 
@@ -79,6 +82,7 @@ const setupGame = () => {
     squares.forEach((x) => {
         x.addEventListener('click', handleClick, { once: true })
         x.addEventListener('mouseenter', (event) => {
+            if (gameOver) return
             if (event.target.classList.contains('circle') || event.target.classList.contains('cross')) return
             event.target.classList.add(turnCircle ? 'hovercircle' : 'hovercross')
         })
@@ -98,6 +102,7 @@ document.querySelector('.reset').addEventListener('click', (event) => {
     document.querySelector('.title').innerHTML = `Tic Tac Toe`
     document.querySelector('.back').style.display = 'none'
     document.querySelector('.forward').style.display = 'none'
+    document.querySelector('.turn').innerHTML = `${turnCircle ? 'O' : 'X'} is playing`
     squares.forEach((x) => {
         x.classList.remove('circle')
         x.classList.remove('cross')
