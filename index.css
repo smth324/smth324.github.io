@@ -1,5 +1,5 @@
 :root {
-    --square-length: 101px;
+    --square-size: 101px;
 }
 
 .square {
@@ -12,15 +12,15 @@
 
 .main {
     display: grid;
-    grid-template-columns: repeat(3, var(--square-length));
-    grid-template-rows: repeat(3, var(--square-length));
+    grid-template-columns: repeat(3, var(--square-size));
+    grid-template-rows: repeat(3, var(--square-size));
 }
 
 .circle::before {
     content: "";
     display: inline-block;
-    width: calc(var(--square-length) * 0.8);
-    height: calc(var(--square-length) * 0.8);
+    width: calc(var(--square-size) * 0.8);
+    height: calc(var(--square-size) * 0.8);
     border-radius: 50%;
     background-color: black;
     position: absolute;
@@ -29,8 +29,8 @@
 .circle::after {
     content: "";
     display: inline-block;
-    width: calc(var(--square-length) * 0.6);
-    height: calc(var(--square-length) * 0.6);
+    width: calc(var(--square-size) * 0.6);
+    height: calc(var(--square-size) * 0.6);
     border-radius: 50%;
     background-color: white;
     position: absolute;
