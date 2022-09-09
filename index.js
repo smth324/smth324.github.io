@@ -26,7 +26,6 @@ squares.forEach((x) => {
         }
     
         for (let i = 0; i < winConditions.length; i++) {
-            console.log('time')
             if (winConditions[i].every(ct => circleturns.includes(ct))) {
                 window.alert("circle wins")
                 break
