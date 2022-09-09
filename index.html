@@ -11,17 +11,34 @@
 </head>
 
 <body>
-    <div class="header">Tic Tac Toe</div>
+    <div class="scoreboard">
+        <div class="circle-win-counter">Circle Wins: 0</div>
+        <div class="cross-win-counter">Cross Wins: 0</div>
+        <div class="draw-counter">Draw: 0</div>
+    </div>
+    <div class="header">
+        <div class="title">Tic Tac Toe</div>
+        <div class="turn">O is playing</div>
+    </div>
     <div class="main">
-        <div class="square" data-square="1"></div>
-        <div class="square" data-square="2"></div>
-        <div class="square" data-square="3"></div>
-        <div class="square" data-square="4"></div>
-        <div class="square" data-square="5"></div>
-        <div class="square" data-square="6"></div>
-        <div class="square" data-square="7"></div>
-        <div class="square" data-square="8"></div>
-        <div class="square" data-square="9"></div>
+        <div class="grid">
+            <div class="square" data-square="1"></div>
+            <div class="square" data-square="2"></div>
+            <div class="square" data-square="3"></div>
+            <div class="square" data-square="4"></div>
+            <div class="square" data-square="5"></div>
+            <div class="square" data-square="6"></div>
+            <div class="square" data-square="7"></div>
+            <div class="square" data-square="8"></div>
+            <div class="square" data-square="9"></div>
+        </div>
+    </div>
+    <div class="controls">
+        <div><button class="reset">Reset</button></div>
+        <div>
+            <button class="back" style="display: none;">back</button>
+            <button class="forward" style="display: none;">forward</button>
+        </div>
     </div>
 </body>
 
