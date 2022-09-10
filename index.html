@@ -6,40 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <script src="index.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
 
 <body>
     <div class="scoreboard">
-        <div class="circle-win-counter">Circle Wins: 0</div>
-        <div class="cross-win-counter">Cross Wins: 0</div>
-        <div class="draw-counter">Draw: 0</div>
+        <div class="cross-win-counter">X Wins: 0</div>
+        <div class="circle-win-counter">O Wins: 0</div>
+        <div class="draw-counter">Draws: 0</div>
     </div>
+    <button class="theme-options">
+        Light Theme
+    </button>
     <div class="header">
         <div class="title">Tic Tac Toe</div>
-        <div class="turn">O is playing</div>
+        <div class="turn">X is playing</div>
     </div>
     <div class="main">
         <div class="grid">
-            <div class="square" data-square="1"></div>
-            <div class="square" data-square="2"></div>
-            <div class="square" data-square="3"></div>
-            <div class="square" data-square="4"></div>
-            <div class="square" data-square="5"></div>
-            <div class="square" data-square="6"></div>
-            <div class="square" data-square="7"></div>
-            <div class="square" data-square="8"></div>
-            <div class="square" data-square="9"></div>
+            <div class="square one" data-square="1"></div>
+            <div class="square two" data-square="2"></div>
+            <div class="square three" data-square="3"></div>
+            <div class="square four" data-square="4"></div>
+            <div class="square five" data-square="5"></div>
+            <div class="square six" data-square="6"></div>
+            <div class="square seven" data-square="7"></div>
+            <div class="square eight" data-square="8"></div>
+            <div class="square nine" data-square="9"></div>
         </div>
     </div>
     <div class="controls">
         <div><button class="reset">Restart</button></div>
         <div class="turncontrols">
-            <button class="back" style="display: none;">Back</button>
-            <button class="forward" style="display: none;">Forward</button>
+            <button class="back" style="display: none;">☚</button>
+            <button class="forward" style="display: none;">☛</button>
         </div>
     </div>
+    <button class="togglepvp">PvP</button>
+    <button class="music">x</button>
 </body>
 
 </html>
