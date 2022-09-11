@@ -78,6 +78,34 @@ body {
     bottom: 16px;
 }
 
+.difficulty-options {
+    position: absolute;
+    height: 120px;
+    justify-content: space-between;
+    left: 16px;
+    top: 40%;
+    display: none;
+    flex-direction: column;
+}
+
+.diffulty-option {
+    all: unset;
+    cursor: pointer;
+    border: 2px solid var(--outline-color);
+    padding: 5px;
+    text-align: center;
+}
+
+.difficulty-selected {
+    background-color: var(--outline-color);
+    color: var(--background-color);
+}
+
+.diffulty-option:hover {
+    background-color: var(--outline-color);
+    color: var(--background-color);
+}
+
 .togglepvp {
     all: unset;
     cursor: pointer;
@@ -86,6 +114,21 @@ body {
     left: 16px;
     bottom: 16px;
 }
+
+.fullreset {
+    all: unset;
+    cursor: pointer;
+    border: 2px solid var(--outline-color);
+    padding: 3px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.fullreset:hover {
+    background-color: var(--outline-color);
+    color: var(--background-color);
+}
+
 .reset {
     all: unset;
     cursor: pointer;
