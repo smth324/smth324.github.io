@@ -35,6 +35,16 @@ const easy = document.querySelector('.easy')
 const medium = document.querySelector('.medium')
 const hard = document.querySelector('.hard')
 const fullreset = document.querySelector('.fullreset')
+const leaderboardBtn = document.querySelector('.leaderboard-btn')
+const modalblack = document.querySelector('.modalblack')
+const scoresList = document.querySelector('.scores-list')
+const leaderboardEasy = document.querySelector('.leaderboard-easy')
+const leaderboardMedium = document.querySelector('.leaderboard-medium')
+const leaderboardHard = document.querySelector('.leaderboard-hard')
+const leaderboardInput = document.querySelector('.leaderboard-input')
+const leaderboardSubmit = document.querySelector('.leaderboard-submit')
+
+
 
 const handleClick = (event) => {
     if (turnCircle) {
@@ -208,19 +218,27 @@ firebase.initializeApp({
 
 const db = firebase.firestore()
 
-const scoresList = document.querySelector('.scores-list')
-
 let scoresRef
 let unsubscribe
 
+const scoresTable = document.querySelector('.scores-table')
+
 scoresRef = db.collection('scores')
 unsubscribe = scoresRef
-    .where('difficulty','==','easy')
+    .where('difficulty', '==', 'easy')
     .onSnapshot(querySnapshot => {
-        const scores = querySnapshot.docs.map(x => {
-            return `<div>${x.data().name}</div>`
+        const scores = querySnapshot.docs.map((x, i) => {
+            return `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${x.data().name}</td>
+            <td>${x.data().difficulty}</td>
+            <td>${x.data().circlewins}</td>
+            <td>${x.data().crosswins}</td>
+            <td>${x.data().draws}</td>            
+            </tr>`
         })
-        scoresList.innerHTML = scores.join('')
+        scoresTable.innerHTML = scoresTable.innerHTML.concat(scores.join(''))
     })
 // reset button
 reset.addEventListener('click', (event) => {
@@ -346,8 +364,88 @@ fullreset.addEventListener('click', (event) => {
     document.querySelector('.draw-counter').innerHTML = `Draws: 0`
 })
 
+leaderboardBtn.addEventListener('click', (event) => {
+    modalblack.classList.add('black')
+    scoresList.style.display = 'block'
+})
 
-// easy mode - the computer chooses randomly
-// medium mode - the computer recognizes series of two
-// hard mode - the computer recoqnizes some strategies(corner and center) and avoids certain squares
-// in hard mode it should be impossible for the computer to lose if the player starts at a corner or center
+document.querySelector('.modalblack').addEventListener('click', (event) => {
+    modalblack.classList.remove('black')
+    scoresList.style.display = 'none'
+})
+
+leaderboardEasy.addEventListener('click', (event) => {
+    scoresRef
+        .where('difficulty', '==', 'easy')
+        .onSnapshot(querySnapshot => {
+            const scores = querySnapshot.docs.map((x, i) => {
+                return `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${x.data().name}</td>
+                <td>${x.data().difficulty}</td>
+                <td>${x.data().circlewins}</td>
+                <td>${x.data().crosswins}</td>
+                <td>${x.data().draws}</td>            
+                </tr>`
+            })
+            scoresTable.innerHTML = `<tr>${scoresTable.children[0].innerHTML}</tr>`.concat(scores.join(''))
+        })
+    leaderboardEasy.classList.add('leaderboard-selected')
+    leaderboardMedium.classList.remove('leaderboard-selected')
+    leaderboardHard.classList.remove('leaderboard-selected')
+})
+
+leaderboardMedium.addEventListener('click', (event) => {
+    scoresRef
+        .where('difficulty', '==', 'medium')
+        .onSnapshot(querySnapshot => {
+            const scores = querySnapshot.docs.map((x, i) => {
+                return `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${x.data().name}</td>
+                <td>${x.data().difficulty}</td>
+                <td>${x.data().circlewins}</td>
+                <td>${x.data().crosswins}</td>
+                <td>${x.data().draws}</td>            
+                </tr>`
+            })
+            scoresTable.innerHTML = `<tr>${scoresTable.children[0].innerHTML}</tr>`.concat(scores.join(''))
+        })
+    leaderboardEasy.classList.remove('leaderboard-selected')
+    leaderboardMedium.classList.add('leaderboard-selected')
+    leaderboardHard.classList.remove('leaderboard-selected')
+
+})
+
+leaderboardHard.addEventListener('click', (event) => {
+    scoresRef
+        .where('difficulty', '==', 'hard')
+        .onSnapshot(querySnapshot => {
+            const scores = querySnapshot.docs.map((x, i) => {
+                return `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${x.data().name}</td>
+                <td>${x.data().difficulty}</td>
+                <td>${x.data().circlewins}</td>
+                <td>${x.data().crosswins}</td>
+                <td>${x.data().draws}</td>            
+                </tr>`
+            })
+            scoresTable.innerHTML = `<tr>${scoresTable.children[0].innerHTML}</tr>`.concat(scores.join(''))
+        })
+    leaderboardEasy.classList.remove('leaderboard-selected')
+    leaderboardMedium.classList.remove('leaderboard-selected')
+    leaderboardHard.classList.add('leaderboard-selected')
+})
+
+leaderboardSubmit.addEventListener('click', (event) => {
+    if (leaderboardInput.value.replace(/ /g, '') === "") {
+        alert("Must input a name")
+        return
+    }
+    const name = leaderboardInput.value.trim()
+    console.log(name)
+})

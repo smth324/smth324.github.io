@@ -14,14 +14,36 @@
 </head>
 
 <body>
+    <div class="modalblack"></div>
     <div class="scoreboard">
         <div class="cross-win-counter">X Wins: 0</div>
         <div class="circle-win-counter">O Wins: 0</div>
         <div class="draw-counter">Draws: 0</div>
         <button class="fullreset">Reset</button>
+        <button class="leaderboard-btn">🏆</button>
     </div>
     <div class="scores-list">
-
+        <div>Name: <input class="leaderboard-input"> <button class="leaderboard-submit">Submit your scores</button>
+            <div class="leaderboard-difficulties">
+                <button class="leaderboard-option leaderboard-easy leaderboard-selected">Easy</button>
+                <button class="leaderboard-option leaderboard-medium">Medium</button>
+                <button class="leaderboard-option leaderboard-hard">Hard</button>
+            </div>
+        </div>
+        <div class="leaderboard-container">
+            <table class="leaderboard-table">
+                <tbody class="scores-table">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Difficulty</th>
+                        <th>Circle Wins</th>
+                        <th>Cross Wins</th>
+                        <th>Draws</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <button class="theme-options">
         Light Theme
