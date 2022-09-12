@@ -196,7 +196,32 @@ const setupGame = () => {
     })
 }
 setupGame()
+firebase.initializeApp({
+    apiKey: "AIzaSyDjvVQRSPfS1vXLmzQRhwSxNO-BsUm7O2Y",
+    authDomain: "tic-tac-toe-39907.firebaseapp.com",
+    projectId: "tic-tac-toe-39907",
+    storageBucket: "tic-tac-toe-39907.appspot.com",
+    messagingSenderId: "979548585866",
+    appId: "1:979548585866:web:0104c6a60f7828c39c1273",
+    measurementId: "G-S6F6DM722Y"
+})
 
+const db = firebase.firestore()
+
+const scoresList = document.querySelector('.scores-list')
+
+let scoresRef
+let unsubscribe
+
+scoresRef = db.collection('scores')
+unsubscribe = scoresRef
+    .where('difficulty','==','easy')
+    .onSnapshot(querySnapshot => {
+        const scores = querySnapshot.docs.map(x => {
+            return `<div>${x.data().name}</div>`
+        })
+        scoresList.innerHTML = scores.join('')
+    })
 // reset button
 reset.addEventListener('click', (event) => {
     gameOver = false

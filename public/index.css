@@ -115,6 +115,11 @@ body {
     bottom: 16px;
 }
 
+.scores-list {
+    position: absolute;
+    top: 150px
+}
+
 .fullreset {
     all: unset;
     cursor: pointer;
