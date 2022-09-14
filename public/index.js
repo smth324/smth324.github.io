@@ -226,6 +226,7 @@ const scoresTable = document.querySelector('.scores-table')
 scoresRef = db.collection('scores')
 unsubscribe = scoresRef
     .where('difficulty', '==', 'easy')
+    .orderBy('crosswins', 'desc')
     .onSnapshot(querySnapshot => {
         const scores = querySnapshot.docs.map((x, i) => {
             return `
@@ -238,7 +239,7 @@ unsubscribe = scoresRef
             <td>${x.data().draws}</td>            
             </tr>`
         })
-        scoresTable.innerHTML = scoresTable.innerHTML.concat(scores.join(''))
+        scoresTable.innerHTML = `<tr>${scoresTable.children[0].innerHTML}</tr>`.concat(scores.join(''))
     })
 // reset button
 reset.addEventListener('click', (event) => {
@@ -377,6 +378,7 @@ document.querySelector('.modalblack').addEventListener('click', (event) => {
 leaderboardEasy.addEventListener('click', (event) => {
     scoresRef
         .where('difficulty', '==', 'easy')
+        .orderBy('crosswins', 'desc')
         .onSnapshot(querySnapshot => {
             const scores = querySnapshot.docs.map((x, i) => {
                 return `
@@ -399,6 +401,7 @@ leaderboardEasy.addEventListener('click', (event) => {
 leaderboardMedium.addEventListener('click', (event) => {
     scoresRef
         .where('difficulty', '==', 'medium')
+        .orderBy('crosswins', 'desc')
         .onSnapshot(querySnapshot => {
             const scores = querySnapshot.docs.map((x, i) => {
                 return `
@@ -422,6 +425,7 @@ leaderboardMedium.addEventListener('click', (event) => {
 leaderboardHard.addEventListener('click', (event) => {
     scoresRef
         .where('difficulty', '==', 'hard')
+        .orderBy('crosswins', 'desc')
         .onSnapshot(querySnapshot => {
             const scores = querySnapshot.docs.map((x, i) => {
                 return `
@@ -446,6 +450,21 @@ leaderboardSubmit.addEventListener('click', (event) => {
         alert("Must input a name")
         return
     }
+    if (pvp) {
+        alert("Must be in PvE mode to submit")
+        return
+    }
+    if (drawCounter + circleWinCounter + crossWinCounter === 0) {
+        alert("Must have at least played one game")
+        return
+    }
     const name = leaderboardInput.value.trim()
-    console.log(name)
+    scoresRef.add({
+        name: name,
+        difficulty: difficulty,
+        circlewins: circleWinCounter,
+        crosswins: crossWinCounter,
+        draws: drawCounter,
+    })
+    fullreset.dispatchEvent(new Event('click'))
 })
