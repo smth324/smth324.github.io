@@ -207,15 +207,14 @@ const setupGame = () => {
 }
 setupGame()
 firebase.initializeApp({
-    apiKey: "AIzaSyDjvVQRSPfS1vXLmzQRhwSxNO-BsUm7O2Y",
-    authDomain: "tic-tac-toe-39907.firebaseapp.com",
-    projectId: "tic-tac-toe-39907",
-    storageBucket: "tic-tac-toe-39907.appspot.com",
-    messagingSenderId: "979548585866",
-    appId: "1:979548585866:web:0104c6a60f7828c39c1273",
-    measurementId: "G-S6F6DM722Y"
+  apiKey: "AIzaSyDjvVQRSPfS1vXLmzQRhwSxNO-BsUm7O2Y",
+  authDomain: "tic-tac-toe-39907.firebaseapp.com",
+  projectId: "tic-tac-toe-39907",
+  storageBucket: "tic-tac-toe-39907.appspot.com",
+  messagingSenderId: "979548585866",
+  appId: "1:979548585866:web:0104c6a60f7828c39c1273",
+  measurementId: "G-S6F6DM722Y"
 })
-
 const db = firebase.firestore()
 
 let scoresRef
@@ -295,8 +294,8 @@ forward.addEventListener('click', (event) => {
 themeOption.addEventListener('click', (event) => {
     themeOption.innerHTML = themeOption.innerHTML.trim() === 'Light Theme' ? 'Dark Theme' : 'Light Theme'
     const currentTheme = getComputedStyle(root).getPropertyValue('--background-color')
-    root.style.setProperty('--background-color', currentTheme === ' #aacabe' ? ' #104d5a' : ' #aacabe')
-    root.style.setProperty('--outline-color', currentTheme === ' #aacabe' ? ' #aacabe' : ' #104d5a')
+    root.style.setProperty('--background-color', currentTheme === '#aacabe' ? '#104d5a' : '#aacabe')
+    root.style.setProperty('--outline-color', currentTheme === '#aacabe' ? '#aacabe' : '#104d5a')
 })
 
 musicOption.addEventListener('click', (event) => {
